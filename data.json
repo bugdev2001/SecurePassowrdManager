@@ -1,0 +1,1 @@
+[{"userId":1,"username":"faizi","password":"$2a$10$BbRRYJ4L802srIj.bP8HxuKdEqfTHXiTJwgIwYpjZIr1l4VQ2DMl6","credentials":[{"service":"example_service_1","username":"faizi_service1","password":"encrypted_password_1"},{"service":"example_service_2","username":"faizi_service2","password":"encrypted_password_2"}]}]
