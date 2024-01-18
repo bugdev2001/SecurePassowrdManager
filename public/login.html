@@ -1,3 +1,121 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="css/form-style.css">-->
+<!--    <title>Login</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="main">-->
+<!--        <h1>Login</h1>-->
+<!--        <form id="loginForm">-->
+<!--            <div class="lgn input-field">-->
+<!--                <input class="login-cred" type="text" placeholder="Username" id="username" required>-->
+<!--                <input class="login-cred" type="password" placeholder="Password" id="password" required>-->
+<!--            </div>-->
+<!--            <div class="lgn input-buttons">-->
+<!--                <input class="btn login" type="button" value="Login" onclick="loginUser()">-->
+<!--                <a class="btn sign-up link-button" href="register.html">Sign-up</a>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <script>-->
+
+<!--     async function loginUser() {-->
+<!--    const username = document.getElementById('username').value;-->
+<!--    const password = document.getElementById('password').value;-->
+
+<!--    try {-->
+<!--        const response = await fetch('http://localhost:3000/login', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json',-->
+<!--            },-->
+<!--            body: JSON.stringify({ username, password }),-->
+<!--        });-->
+
+<!--        if (response.ok) {-->
+<!--            alert('Login successful');-->
+<!--            window.location.href = 'password-view.html'; // Redirect to the password view page-->
+<!--        } else {-->
+<!--            alert('Invalid username or password');-->
+<!--        }-->
+<!--    } catch (error) {-->
+<!--        console.error('Error during login:', error);-->
+<!--        alert('Login failed');-->
+<!--    }-->
+<!--}-->
+
+
+<!--    </script>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="css/form-style.css">-->
+<!--    <title>Login</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="main">-->
+<!--        <h1>Login</h1>-->
+<!--        <form id="loginForm">-->
+<!--            <div class="lgn input-field">-->
+<!--                <input class="login-cred" type="text" placeholder="Username" id="username" required>-->
+<!--                <input class="login-cred" type="password" placeholder="Password" id="password" required>-->
+<!--            </div>-->
+<!--            <div class="lgn input-buttons">-->
+<!--                <input class="btn login" type="button" value="Login" onclick="loginUser()">-->
+<!--                <a class="btn sign-up link-button" href="register.html">Sign-up</a>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--    async function loginUser() {-->
+<!--        const username = document.getElementById('username').value;-->
+<!--        const password = document.getElementById('password').value;-->
+
+<!--        try {-->
+<!--            const response = await fetch('http://localhost:3000/login', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                },-->
+<!--                body: JSON.stringify({ username, password }),-->
+<!--            });-->
+
+<!--            if (response.ok) {-->
+<!--                const responseData = await response.json();-->
+<!--                localStorage.setItem('token', responseData.token);-->
+<!--                alert('Login successful');-->
+<!--                window.location.href = 'password-view.html'; // Redirect to the password view page-->
+<!--            } else {-->
+<!--                alert('Invalid username or password');-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error('Error during login:', error);-->
+<!--            alert('Login failed');-->
+<!--        }-->
+<!--    }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,32 +144,32 @@
     </div>
 
     <script>
+    async function loginUser() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
 
-     async function loginUser() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-    try {
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        if (response.ok) {
-            alert('Login successful');
-            window.location.href = 'password-view.html'; // Redirect to the password view page
-        } else {
-            alert('Invalid username or password');
+            if (response.ok) {
+                const responseData = await response.json();
+                localStorage.setItem('token', responseData.token);
+                alert('Login successful');
+                window.location.href = 'password-view.html'; // Redirect to the password view page
+            } else {
+                alert('Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('Login failed');
         }
-    } catch (error) {
-        console.error('Error during login:', error);
-        alert('Login failed');
     }
-}
-
-
     </script>
+</body>
 </html>
