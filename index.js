@@ -321,18 +321,37 @@ app.post('/user/credentials', verifyToken, (req, res) => {
 
     res.status(201).send('Credential added successfully.');
 });
-app.post('/user/delete-records', (req, res) => {
-  const { records } = req.body;
+app.post('/user/delete-records', verifyToken, (req, res) => {
+    const { records } = req.body;
+    const userId = req.user.userId; // Assuming userId is included in the JWT payload
+    const data = readDataFromFile();
 
-  if (!records || !Array.isArray(records)) {
-    return res.status(400).json({ error: 'Invalid request payload' });
-  }
-    console.log(req.body)
-  // Filter out records to keep
-  // userData.credentials = userData.credentials.filter((credential) => !records.includes(credential.service));
+    const user = data.find(u => u.userId === userId);
+    if (!user) {
+        return res.status(404).send('User not found.');
+    }
 
-  res.json({ message: 'Records deleted successfully' });
+    // Filter out records to keep
+    user.credentials = user.credentials.filter((credential) => !records.includes(credential.service));
+
+    saveDataToFile(data);
+
+    res.json({ message: 'Records deleted successfully' });
 });
+
+
+// app.post('/user/delete-records', (req, res) => {
+//   const { records } = req.body;
+//
+//   if (!records || !Array.isArray(records)) {
+//     return res.status(400).json({ error: 'Invalid request payload' });
+//   }
+//     console.log(req.body)
+//   // Filter out records to keep
+//   // userData.credentials = userData.credentials.filter((credential) => !records.includes(credential.service));
+//
+//   res.json({ message: 'Records deleted successfully' });
+// });
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
