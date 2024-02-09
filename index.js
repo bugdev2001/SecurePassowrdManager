@@ -205,11 +205,23 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const { join } = require('path');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 const FILE_NAME = 'data.json';
 const JWT_SECRET = 'your-secret-key'; // Change this to a secure secret key
+
+
+
+
+// Allow requests from your front-end domain
+app.use(cors({
+    origin: 'https://password-manager-9868.onrender.com',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
+
+
 
 app.use(bodyParser.json());
 app.use(express.static(join(__dirname, 'public')));
