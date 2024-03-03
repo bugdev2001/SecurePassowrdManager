@@ -151,7 +151,10 @@ app.post('/user/delete-records', verifyToken, (req, res) => {
     res.json({ message: 'Records deleted successfully' });
 });
 app.post('/user/edit-credentials', verifyToken, (req, res) => {
+    // console.log("lalallala")
     const { service, newService, newUsername, newPassword } = req.body;
+    console.log(service, newService, newUsername, newPassword)
+
     const userId = req.user.userId; // Assuming userId is included in the JWT payload
     const data = readDataFromFile();
 
