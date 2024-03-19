@@ -16,8 +16,8 @@ const JWT_SECRET = 'your-secret-key'; // Change this to a secure secret key
 
 // Allow requests from your front-end domain
 app.use(cors({
-    origin: 'http://127.0.0.1:3000',
-    // origin: 'https://password-manager-9868.onrender.com',
+    //origin: 'http://127.0.0.1:3000',
+     origin: 'https://password-manager-9868.onrender.com',
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
