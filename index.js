@@ -9,8 +9,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 const FILE_NAME = 'data.json';
-const JWT_SECRET = 'your-secret-key'; // Change this to a secure secret key
-
+const JWT_SECRET = 'secret-key';
 
 
 
@@ -18,7 +17,7 @@ const JWT_SECRET = 'your-secret-key'; // Change this to a secure secret key
 app.use(cors({
     //origin: 'http://127.0.0.1:3000',
      origin: 'https://password-manager-9868.onrender.com',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200,
 }));
 
 
@@ -38,7 +37,7 @@ app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
-        userId: data.length + 1, // Simple ID assignment; consider a more robust approach for production
+        userId: data.length + 1,
         username,
         password: hashedPassword,
         credentials: [],
@@ -75,12 +74,6 @@ app.get('/data', verifyToken, (req, res) => {
     }
 });
 
-// Password strength checker endpoint
-app.post('/password/strength', (req, res) => {
-    const password = req.body.password;
-    const result = checkPasswordStrength(password);
-    res.json(result);
-});
 
 // Verify JWT token middleware
 function verifyToken(req, res, next) {
@@ -142,7 +135,6 @@ app.post('/user/delete-records', verifyToken, (req, res) => {
         return res.status(404).send('User not found.');
     }
 
-    // Filter out records to keep
     user.credentials = user.credentials.filter((credential) => !records.includes(credential.service));
     console.log(user.credentials)
 
@@ -168,7 +160,6 @@ app.post('/user/edit-credentials', verifyToken, (req, res) => {
         return res.status(404).send('Credential not found.');
     }
 
-    // Update the credential with new information provided
     if (newService) user.credentials[credentialIndex].service = newService;
     if (newUsername) user.credentials[credentialIndex].username = newUsername;
     if (newPassword) user.credentials[credentialIndex].password = newPassword;
