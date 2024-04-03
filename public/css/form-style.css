@@ -61,7 +61,7 @@ h1, h5, h6 {
 }
 
 .register-cred:focus, .login-cred:focus{
-  outline: solid rgb(24, 202, 0) medium;
+  outline: solid rgb(24, 202, 0) large;
 }
 
 .lgn{
