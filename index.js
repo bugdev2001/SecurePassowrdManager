@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const FILE_NAME = 'data.json';
 const JWT_SECRET = 'secret-key';
 
@@ -16,7 +16,8 @@ const JWT_SECRET = 'secret-key';
 // Allow requests from your front-end domain
 app.use(cors({
     //origin: 'http://127.0.0.1:3000',
-     origin: 'https://password-manager-9868.onrender.com',
+     // origin: 'https://password-manager-9868.onrender.com',
+    origin: 'https://securepassowrdmanager.onrender.com',
     optionsSuccessStatus: 200,
 }));
 
